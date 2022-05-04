@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<link rel="stylesheet" href="https://cdn.metroui.org.ua/v4.3.2/css/metro-all.min.css">
+<script src="https://cdn.metroui.org.ua/v4/js/metro.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+
+<div class="grid">
+    <div class="row">
+        <div class="cell-8"></div>
+        <div class="cell-8"></div>
+        <div class="cell-8"></div>
+        <div class="img-container">
+            <img src="~/Resources/index_img.png">
+            <div class="image-overlay op-white">
+                <div class="row flex-justify-center flex-align-center">
+                    <button class="button primary large rounded cell-3" style="z-index:1;margin-top:30%" onclick="document.location='/aboba'">Stats</button>
+                    <button class="button primary large rounded offset-1 cell-3" style="z-index: 1;margin-top:30%" onclick="document.location='/Home/GenerateGameEvent'">Start Game</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

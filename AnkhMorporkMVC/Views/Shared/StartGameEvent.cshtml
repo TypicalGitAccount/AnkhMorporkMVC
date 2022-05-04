@@ -1,0 +1,33 @@
+﻿@model AnkhMorporkMVC.ViewModels.IOViewModel
+
+@{
+    ViewBag.Title = "GameView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="https://cdn.metroui.org.ua/v4.3.2/css/metro-all.min.css">
+<script src="https://cdn.metroui.org.ua/v4/js/metro.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<div class="grid">
+    <div class="row">
+        <div class="cell-8"></div>
+        <div class="cell-8"></div>
+        <div class="cell-8"></div>
+        <div class="img-container">
+            <img src="~/Resources/guild_img.jpg" style="width:10%;height:50%;">
+            <div class="dialog">
+                <div class="dialog-content">
+                </div>
+                <div class="dialog-title">@Model.output</div>
+                <div class="dialog-actions">
+                    @Html.BeginForm("Event", @HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().Replace("Controller", "")) 
+                    <div class="form-group">
+                        @Html.EnumDropDownListFor(m => m.EventAnswer, htmlAttributes: new { @class = "form-control" })
+                    </div>
+                        <button type="submit" class="btn btn-primary">Continue</button>
+               </div>
+            </div>
+        </div>
+    </div>
+</div>

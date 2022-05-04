@@ -1,0 +1,9 @@
+﻿@model AnkhMorporkMVC.GameLogic.GameTools.User
+@{
+    ViewBag.Title = "GameOver";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>GameOver</h2>
+<h2>Your score - @Model.Moves<h2>
+@Html.ActionLink("Home", "Index", "Home")

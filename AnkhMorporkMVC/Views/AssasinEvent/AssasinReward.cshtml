@@ -1,0 +1,18 @@
+﻿@model AnkhMorporkMVC.ViewModels.AssasinRewardViewModel
+
+@{
+    ViewBag.Title = "AssasinEvent";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>AssasinEvent</h2>
+@using (Html.BeginForm("AssasinReward", @HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().Replace("Controller", "")))
+{
+    <div>Say your reward!</div>
+    <div class="form-group">
+        @Html.Hidden("EventAnswer", Model.EventAnswer)
+        @Html.TextBoxFor(m => m.Input, new {@class = "form-control"})
+        @Html.ValidationMessageFor(m => m.Input)
+    </div>
+    <button type="submit" class="btn btn-primary">Enter</button>
+}

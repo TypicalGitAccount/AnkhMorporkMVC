@@ -1,0 +1,10 @@
+﻿@model AnkhMorporkMVC.ViewModels.EventResponseViewModel
+
+@{
+    ViewBag.Title = "EventResponse";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>@Model.Output</h3>
+<h2>@((decimal)Model.User.BalancePennies/100) - Bablo)</h2>
+@Html.ActionLink("Home", "GenerateGameEvent", "Home");
