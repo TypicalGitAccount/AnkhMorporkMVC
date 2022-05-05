@@ -1,7 +1,7 @@
 ﻿using AnkhMorporkMVC.GameLogic.States;
 using AnkhMorporkMVC.GameLogic.Strategies;
 using AnkhMorporkMVC.Models;
-using Newtonsoft.Json;
+using AnkhMorporkMVC.Resources;
 
 namespace AnkhMorporkMVC.GameLogic.Entities
 { 
@@ -17,6 +17,7 @@ namespace AnkhMorporkMVC.GameLogic.Entities
             model.Name = State.Name;
             model.InteractionCostPennies = State.InteractionCostPennies;
             model.TheftsHappened = ThieveState.TheftsHappened;
+            model.ImagePath = ImagePaths.ThieveImagePath;
             return model;
         }
     }

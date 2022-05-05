@@ -1,6 +1,5 @@
 ﻿using AnkhMorpork.GameLogic.Events;
 using AnkhMorporkMVC.GameLogic.Entities;
-using AnkhMorporkMVC.GameLogic.IO;
 using AnkhMorporkMVC.GameLogic.PredefinedData;
 using AnkhMorporkMVC.Models;
 using AnkhMorporkMVC.Repositories;
@@ -12,14 +11,12 @@ namespace AnkhMorporkMVC.Services
 {
     public class AssasinEventService : IAssasinEventService
     {
-        protected ApplicationDbContext _context;
         protected IUserRepository _userRepository;
         protected IGameEntitiesRepository _entitiesRepository;
 
-        public AssasinEventService(ApplicationDbContext context) {
-            _context = context;
-            _userRepository = new UserRepository(context);
-            _entitiesRepository = new GameEntitiesRepository(context);  
+        public AssasinEventService(IUserRepository userRepository, IGameEntitiesRepository entitiesRepository) {
+            _userRepository = userRepository;
+            _entitiesRepository = entitiesRepository;  
         }
 
         public string StartGameEvent()
@@ -32,7 +29,7 @@ namespace AnkhMorporkMVC.Services
             return gameEvent.Welcome(_userRepository.Get().ToObject(), gameEntities);
         }
 
-        public string ProcessEvent(UserOption eventAnswer)
+        public bool ProcessEvent(UserOption eventAnswer, out StringBuilder output)
         {
             throw new NotImplementedException();
         }
@@ -42,17 +39,16 @@ namespace AnkhMorporkMVC.Services
             return AssasinEvent.ValidRewardInput(rewardInput);
         }
 
-        public string ProcessAssasinReward(string rewardInput, UserOption eventAnswer)
+        public bool ProcessAssasinReward(string rewardInput, UserOption eventAnswer, out StringBuilder output)
         {
             var user = _userRepository.Get().ToObject();
-            var gameEntities = _entitiesRepository.Get();
-            StringBuilder output;
+            var gameEntities = GetEntities();
             if (new AssasinEvent().Run(gameEntities, user, eventAnswer, out output, rewardInput))
             {
                 _userRepository.CreateUpdate(user.ToModel());
-                return output.ToString();
+                return true;
             }
-            return null;
+            return false;
         }
 
         public GameLogic.GameTools.User GetUser()
@@ -62,7 +58,18 @@ namespace AnkhMorporkMVC.Services
 
         public List<GameEntity> GetEntities()
         {
-            return _entitiesRepository.Get();
+            var entityModels = _entitiesRepository.Get();
+            List<GameEntity> entities = new List<GameEntity>(entityModels.Count);
+            foreach (var entity in entityModels)
+            {
+                entities.Add(entity.ToObject());
+            }
+            return entities;
+        }
+
+        public string GetEntityImgPath()
+        {
+            return _entitiesRepository.Get()[0].ImagePath;
         }
 
         public GameLogic.GameTools.User GameOver()

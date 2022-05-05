@@ -1,7 +1,7 @@
 ﻿using AnkhMorporkMVC.GameLogic.Entities;
 using AnkhMorporkMVC.GameLogic.GameTools;
-using AnkhMorporkMVC.GameLogic.IO;
 using AnkhMorporkMVC.GameLogic.PredefinedData;
+using AnkhMorporkMVC.GameLogic.IO;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -49,16 +49,10 @@ namespace AnkhMorpork.GameLogic.Events
             return InputProcessor.ValidInput(input, typeof(decimal), (val) =>
             {
                 decimal value;
-                try
-                {
-                    decimal.TryParse(input, NumberStyles.AllowDecimalPoint, CultureInfo.CreateSpecificCulture("en-US"), out value);
-                }
-                catch (Exception)
-                {
-                    return false;
-                }
+                var result = decimal.TryParse(input, NumberStyles.AllowDecimalPoint, CultureInfo.CreateSpecificCulture("en-US"), out value);
 
-                return value > 0;
+                return result && value > (int)AssasinRewardPennies.MinRewardPennies && 
+                value <= CurrencyConverter.PenniesToDollars((int)AssasinRewardPennies.MaxRewardPennies);
             });
         }
 

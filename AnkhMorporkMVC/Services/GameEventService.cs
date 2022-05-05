@@ -12,15 +12,15 @@ namespace AnkhMorporkMVC.Services
 {
     public class GameEventService : IGameEventService
     {
-        protected ApplicationDbContext _context { get; set; }
         protected IUserRepository _userRepository;
         protected IGameEntitiesRepository _entitiesRepository;
+        protected IGameController _gameController;
 
-        public GameEventService(ApplicationDbContext context)
+        public GameEventService(IUserRepository userRepository, IGameEntitiesRepository entitiesRepository, IGameController gameController)
         {
-            _context = context;
-            _userRepository = new UserRepository(context);
-            _entitiesRepository = new GameEntitiesRepository(context);
+            _userRepository = userRepository;
+            _entitiesRepository = entitiesRepository;
+            _gameController = gameController;   
         }
 
         public GameLogic.GameTools.User GetUser()
@@ -30,12 +30,23 @@ namespace AnkhMorporkMVC.Services
 
         public List<GameEntity> GetEntities()
         {
-            return _entitiesRepository.Get();
+            var entityModels = _entitiesRepository.Get();
+            List<GameEntity> entities = new List<GameEntity>(entityModels.Count);
+            foreach(var entity in entityModels)
+            {
+                entities.Add(entity.ToObject());
+            }
+            return entities;
+        }
+
+        public string GetEntityImgPath()
+        {
+            return _entitiesRepository.Get()[0].ImagePath;
         }
 
         public string StartGameEvent()
         {
-            var gameEvent = WebGameController.GenerateEvent(except: new List<Type>() { typeof(AssasinEvent) });
+            var gameEvent = _gameController.GenerateEvent(new List<Type>() { typeof(AssasinEvent) });
             var gameEntities = gameEvent.GenerateEntities();
             if (_userRepository.Get() == null)
                 _userRepository.CreateUpdate(new UserModel(new GameLogic.GameTools.User()));
@@ -45,20 +56,19 @@ namespace AnkhMorporkMVC.Services
             return gameEvent.Welcome(userModel.ToObject(), gameEntities);
         }
 
-        public string ProcessEvent(UserOption eventAnswer)
+        public bool ProcessEvent(UserOption eventAnswer, out StringBuilder output)
         {
             var userModel = _userRepository.Get();
             var eventTypeName = (string)System.Web.HttpContext.Current.Session["EventType"];
             var gameEvent = (GameEntityEvent)Type.GetType(eventTypeName).GetConstructor(new Type[] { }).Invoke(new object[] { });
-            StringBuilder output;
             var user = userModel.ToObject();
-            if (gameEvent.Run(_entitiesRepository.Get(), user, eventAnswer, out output))
+            if (gameEvent.Run(GetEntities(), user, eventAnswer, out output))
             {
                 _userRepository.CreateUpdate(user.ToModel());
                 _entitiesRepository.Delete();
-                return output.ToString();
+                return true;
             }
-            return null;
+            return false;
         }
 
         public GameLogic.GameTools.User GameOver()

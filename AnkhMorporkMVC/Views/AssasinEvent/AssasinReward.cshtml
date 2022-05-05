@@ -6,13 +6,25 @@
 }
 
 <h2>AssasinEvent</h2>
+<img src="@Url.Content(Model.ImagePath)" style="width:40%;height:40%;">
 @using (Html.BeginForm("AssasinReward", @HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().Replace("Controller", "")))
 {
     <div>Say your reward!</div>
     <div class="form-group">
+        @Html.Hidden("ImagePath", Model.ImagePath)
         @Html.Hidden("EventAnswer", Model.EventAnswer)
         @Html.TextBoxFor(m => m.Input, new {@class = "form-control"})
         @Html.ValidationMessageFor(m => m.Input)
     </div>
     <button type="submit" class="btn btn-primary">Enter</button>
 }
+
+<script type="text/javascript" language="javascript">
+function DisableBackButton() {
+  window.history.forward()
+}
+DisableBackButton();
+window.onload = DisableBackButton;
+window.onpageshow = function(evt) { if (evt.persisted) DisableBackButton() }
+window.onunload = function() { void (0) }
+</script>

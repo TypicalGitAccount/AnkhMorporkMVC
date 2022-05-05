@@ -234,7 +234,7 @@
     <Compile Include="GameLogic\GameTools\CurrencyConverter.cs" />
     <Compile Include="GameLogic\GameTools\IGameController.cs" />
     <Compile Include="GameLogic\GameTools\User.cs" />
-    <Compile Include="GameLogic\GameTools\WebGameController.cs" />
+    <Compile Include="GameLogic\GameTools\GameController.cs" />
     <Compile Include="GameLogic\IO\InputProcessor.cs" />
     <Compile Include="GameLogic\PredefinedData\Assasin.cs" />
     <Compile Include="GameLogic\PredefinedData\BeggarReward.cs" />
@@ -290,6 +290,10 @@
     <Compile Include="Migrations\202204301409599_RemoveEventTypeFieldFromUserModel.designer.cs">
       <DependentUpon>202204301409599_RemoveEventTypeFieldFromUserModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202205041604033_AddImagePathFieldToGameEntityModel.cs" />
+    <Compile Include="Migrations\202205041604033_AddImagePathFieldToGameEntityModel.designer.cs">
+      <DependentUpon>202205041604033_AddImagePathFieldToGameEntityModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AssasinModel.cs" />
@@ -307,6 +311,7 @@
     <Compile Include="Repositories\IGameEntitiesRepository.cs" />
     <Compile Include="Repositories\IUserRpository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="Resources\ImagePaths.cs" />
     <Compile Include="Services\AssasinEventService.cs" />
     <Compile Include="Services\GameEventService.cs" />
     <Compile Include="Services\IAssasinEventService.cs" />
@@ -314,6 +319,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AssasinRewardViewModel.cs" />
     <Compile Include="ViewModels\EventResponseViewModel.cs" />
+    <Compile Include="ViewModels\GameOverViewModel.cs" />
     <Compile Include="ViewModels\IOViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -325,8 +331,12 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Resources\guild_img.jpg" />
+    <Content Include="Resources\assasin_img.jpg" />
+    <Content Include="Resources\beggar_img.jpg" />
+    <Content Include="Resources\fool_img.png" />
     <Content Include="Resources\index_img.png" />
+    <Content Include="Resources\pub_img.jpg" />
+    <Content Include="Resources\thieve_img.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
@@ -378,6 +388,7 @@
     <Content Include="Views\Shared\GameOver.cshtml" />
     <Content Include="Views\Shared\EventResponse.cshtml" />
     <Content Include="Views\AssasinEvent\AssasinReward.cshtml" />
+    <Content Include="Views\Shared\DbError.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -417,6 +428,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202204301409599_RemoveEventTypeFieldFromUserModel.resx">
       <DependentUpon>202204301409599_RemoveEventTypeFieldFromUserModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205041604033_AddImagePathFieldToGameEntityModel.resx">
+      <DependentUpon>202205041604033_AddImagePathFieldToGameEntityModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

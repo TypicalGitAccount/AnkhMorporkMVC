@@ -2,7 +2,7 @@
 {
     public enum AssasinRewardPennies
     {
-        MinRewardPennies = 10,
+        MinRewardPennies = 1,
         MaxRewardPennies = User.StartBalancePennies/2
     }
 

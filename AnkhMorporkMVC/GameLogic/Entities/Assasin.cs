@@ -1,6 +1,7 @@
 ﻿using AnkhMorporkMVC.GameLogic.States;
 using AnkhMorporkMVC.GameLogic.Strategies;
 using AnkhMorporkMVC.Models;
+using AnkhMorporkMVC.Resources;
 
 namespace AnkhMorporkMVC.GameLogic.Entities
 {
@@ -19,6 +20,7 @@ namespace AnkhMorporkMVC.GameLogic.Entities
             model.minRewardPennies = ((AssasinState)State).MinRewardPennies;
             model.maxRewardPennies = ((AssasinState)State).MaxRewardPennies;
             model.IsOccupied = ((AssasinState)State).IsOccupied;
+            model.ImagePath = ImagePaths.AssasinImagePath;
             return model;
         }
     }

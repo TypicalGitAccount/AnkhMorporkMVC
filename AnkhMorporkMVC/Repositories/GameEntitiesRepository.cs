@@ -14,26 +14,17 @@ namespace AnkhMorporkMVC.Repositories
         public void CreateUpdate(List<GameEntity> entities)
         {
             if (_context.GameEntities.Any())
-            {
                 _context.GameEntities.RemoveRange(_context.GameEntities);
-            }
+
             foreach (var entity in entities)
-            {
                 _context.GameEntities.Add(entity.ToModel());
-            }
+
             _context.SaveChanges();
         }
 
-        public List<GameEntity> Get()
+        public List<GameEntityModel> Get()
         {
-            var entityModels = _context.GameEntities;
-            if (!entityModels.Any())
-                return null;
-
-            List<GameEntity> entities = new List<GameEntity>();
-            foreach(var model in entityModels)
-                entities.Add(model.ToObject());
-            return entities;
+            return _context.GameEntities.ToList();
         }
 
         public void Delete()

@@ -1,10 +1,11 @@
 ﻿using AnkhMorporkMVC.GameLogic.PredefinedData;
+using System.Text;
 
 namespace AnkhMorporkMVC.Services
 {
     public interface IAssasinEventService : IGameEventService
     {
         bool ValidateReward(string rewardInput);
-        string ProcessAssasinReward(string rewardInput, UserOption eventAnswer);
+        bool ProcessAssasinReward(string rewardInput, UserOption eventAnswer, out StringBuilder output);
     }
 }

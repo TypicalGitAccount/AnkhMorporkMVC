@@ -1,9 +1,21 @@
-﻿@model AnkhMorporkMVC.GameLogic.GameTools.User
+﻿@model AnkhMorporkMVC.ViewModels.GameOverViewModel
 @{
     ViewBag.Title = "GameOver";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>GameOver</h2>
-<h2>Your score - @Model.Moves<h2>
+<img src="@Url.Content(Model.ImagePath)" style="width:40%;height:40%;">
+<h2>@Model.Output</h2>
+<h2>Your score - @Model.User.Moves<h2>
 @Html.ActionLink("Home", "Index", "Home")
+
+<script type="text/javascript" language="javascript">
+function DisableBackButton() {
+  window.history.forward()
+}
+DisableBackButton();
+window.onload = DisableBackButton;
+window.onpageshow = function(evt) { if (evt.persisted) DisableBackButton() }
+window.onunload = function() { void (0) }
+</script>

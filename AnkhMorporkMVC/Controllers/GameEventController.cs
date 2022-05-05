@@ -1,6 +1,7 @@
 ﻿using AnkhMorporkMVC.ViewModels;
 using AnkhMorporkMVC.Services;
 using System.Web.Mvc;
+using System.Text;
 
 namespace AnkhMorporkMVC.Controllers
 {
@@ -16,27 +17,35 @@ namespace AnkhMorporkMVC.Controllers
 
         public virtual ActionResult StartGameEvent()
         {
-            return View(new IOViewModel(output: _gameService.StartGameEvent()));
+            var output = _gameService.StartGameEvent();
+            return View(new IOViewModel(output: output, imagePath:_gameService.GetEntityImgPath()));
         }
 
         [HttpPost]
         public virtual ActionResult Event(IOViewModel model)
         {
-            var output = _gameService.ProcessEvent(model.EventAnswer);
-            if (output != null)
-                return View("EventResponse", new EventResponseViewModel(output, _gameService.GetUser()));
+            StringBuilder output;
+            var imgPath = _gameService.GetEntityImgPath();
+            if (_gameService.ProcessEvent(model.EventAnswer, out output))
+                return EventResponse(new EventResponseViewModel(output.ToString(), _gameService.GetUser(), imgPath));
 
-            return RedirectToAction("GameOver");
+            return GameOver(new GameOverViewModel(_gameService.GetUser(), output.ToString(), imgPath));
         }
 
         public virtual ActionResult EventResponse(EventResponseViewModel model)
         {
-            return View(model);
+            return View("EventResponse", model);
         }
 
-        public virtual ActionResult GameOver()
+        public virtual ActionResult DbError()
         {
-            return View(_gameService.GameOver());
+            return View();
+        }
+
+        public virtual ActionResult GameOver(GameOverViewModel model)
+        {
+            _gameService.GameOver();
+            return View("GameOver", model);
         }
     }
 }

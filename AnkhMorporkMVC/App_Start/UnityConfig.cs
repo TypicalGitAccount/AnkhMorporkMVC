@@ -1,5 +1,5 @@
 using AnkhMorporkMVC.Controllers;
-using AnkhMorporkMVC.Models;
+using AnkhMorporkMVC.GameLogic.GameTools;
 using AnkhMorporkMVC.Repositories;
 using AnkhMorporkMVC.Services;
 using System.Web.Mvc;
@@ -17,7 +17,8 @@ namespace AnkhMorporkMVC
             container.RegisterType<IGameEventService, GameEventService>();
             container.RegisterType<IAssasinEventService, AssasinEventService>();
             container.RegisterType<IGameEntitiesRepository, GameEntitiesRepository>();
-            container.RegisterType <ApplicationDbContext>(new InjectionConstructor());
+            container.RegisterType <IUserRepository, UserRepository>();
+            container.RegisterType <IGameController, GameController>();
             container.RegisterType<AccountController>(new InjectionConstructor());
             container.RegisterType<RolesAdminController>(new InjectionConstructor());
             container.RegisterType<ManageController>(new InjectionConstructor());

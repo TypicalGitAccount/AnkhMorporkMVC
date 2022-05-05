@@ -6,7 +6,7 @@ namespace AnkhMorporkMVC.ViewModels
     {
         public string Output { get; set; }
         public User User { get; set; }
-
-        public EventResponseViewModel(string output, User user) { Output = output; User = user; }
+        public string ImagePath { get; set; }
+        public EventResponseViewModel(string output, User user, string imagePath) { Output = output; User = user; ImagePath = imagePath; }
     }
 }

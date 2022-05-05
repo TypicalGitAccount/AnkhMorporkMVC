@@ -1,14 +1,11 @@
-﻿@model AnkhMorporkMVC.ViewModels.EventResponseViewModel
-
+﻿
 @{
-    ViewBag.Title = "EventResponse";
+    ViewBag.Title = "DbError";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<img src="@Url.Content(Model.ImagePath)" style="width:40%;height:40%;">
-<h3>@Model.Output</h3>
-<h2>@((decimal)Model.User.BalancePennies/100) - Bablo)</h2>
-@Html.ActionLink("Home", "GenerateGameEvent", "Home");
+<h2>Bebra happened! Return to homepage</h2>
+@Html.ActionLink("Home", "Index", "Home")
 
 <script type="text/javascript" language="javascript">
 function DisableBackButton() {

@@ -1,6 +1,7 @@
 ﻿using AnkhMorporkMVC.GameLogic.PredefinedData;
 using System.Collections.Generic;
 using AnkhMorporkMVC.GameLogic.Entities;
+using System.Text;
 
 namespace AnkhMorporkMVC.Services
 {
@@ -9,6 +10,7 @@ namespace AnkhMorporkMVC.Services
         GameLogic.GameTools.User GetUser();
 
         List<GameEntity> GetEntities();
+        string GetEntityImgPath();
 
         /// <summary>
         /// Starts a game event
@@ -21,7 +23,7 @@ namespace AnkhMorporkMVC.Services
         /// </summary>
         /// <param name="eventAnswer"></param>
         /// <returns>output containing event info on success, null otherwise</returns>
-        string ProcessEvent(UserOption eventAnswer);
+        bool ProcessEvent(UserOption eventAnswer, out StringBuilder output);
 
         /// <summary>
         /// Ends the game

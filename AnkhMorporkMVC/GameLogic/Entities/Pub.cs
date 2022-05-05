@@ -1,6 +1,7 @@
 ﻿using AnkhMorporkMVC.GameLogic.States;
 using AnkhMorporkMVC.GameLogic.Strategies;
 using AnkhMorporkMVC.Models;
+using AnkhMorporkMVC.Resources;
 
 namespace AnkhMorporkMVC.GameLogic.Entities
 {
@@ -16,6 +17,7 @@ namespace AnkhMorporkMVC.GameLogic.Entities
             model.Name = State.Name;
             model.InteractionCostPennies = State.InteractionCostPennies;
             model.IsOpen = ((PubState)State).IsOpen;
+            model.ImagePath = ImagePaths.PubImagePath;
             return model;
         }
     }
