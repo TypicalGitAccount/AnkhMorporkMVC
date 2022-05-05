@@ -20,13 +20,13 @@ namespace AnkhMorporkMVC.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public DbSet<UserModel> User { get; set; }
-        public DbSet<GameEntityModel> GameEntities { get; set; }
-        public DbSet<AssasinModel> Assasins { get; set; }
-        public DbSet<ThieveModel> Thieves { get; set; }
-        public DbSet<BeggarModel> Beggars { get; set; }
-        public DbSet<PubModel> Pubs { get; set; }
-        public DbSet<FoolModel> Fools { get; set; }
+        public virtual DbSet<UserModel> User { get; set; }
+        public virtual DbSet<GameEntityModel> GameEntities { get; set; }
+        public virtual DbSet<AssasinModel> Assasins { get; set; }
+        public virtual DbSet<ThieveModel> Thieves { get; set; }
+        public virtual DbSet<BeggarModel> Beggars { get; set; }
+        public virtual DbSet<PubModel> Pubs { get; set; }
+        public virtual DbSet<FoolModel> Fools { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

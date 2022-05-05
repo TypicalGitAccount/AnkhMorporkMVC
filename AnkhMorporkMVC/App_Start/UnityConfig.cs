@@ -1,5 +1,6 @@
 using AnkhMorporkMVC.Controllers;
 using AnkhMorporkMVC.GameLogic.GameTools;
+using AnkhMorporkMVC.Models;
 using AnkhMorporkMVC.Repositories;
 using AnkhMorporkMVC.Services;
 using System.Web.Mvc;
