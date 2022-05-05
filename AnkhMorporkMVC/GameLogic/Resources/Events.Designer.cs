@@ -73,7 +73,7 @@ namespace AnkhMorporkMVC.GameLogic.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to 
-        ///Unfriendly people didn&apos;t like the reward you offered
+        ///Unfriendly people didn&apos;t like the reward you offered. 
         ///.
         /// </summary>
         internal static string AssasinEventRewardGuessedWrong {
@@ -107,9 +107,7 @@ namespace AnkhMorporkMVC.GameLogic.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to 
-        ///You bumped into a gang of Assasins! They say 
-        ///someone set a contract to kill you. But we can have a deal
-        ///Show us your pocket, and if someone likes it&apos;s content and 
+        ///You bumped into a gang of Assasins! They say someone set a contract to kill you. But we can have a deal Show us your pocket, and if someone likes it&apos;s content and 
         ///has a free time to help you eliminate your assination orderer, we&apos;re good.
         ///Accept the offer? (Enter &apos;Yes&apos; or &apos;No&apos;)
         ///.
@@ -133,11 +131,7 @@ namespace AnkhMorporkMVC.GameLogic.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to 
-        ///A random beggar named {0} ({1})
-        ///has been disturbing you for more than an hour already.
-        ///It looks like if you don&apos;t give him a bottle of beer,
-        ///he will chase you to death
-        ///Give alms to {2}? (Enter &apos;Yes&apos; or &apos;No&apos;)
+        ///A random beggar named {0} ({1}) has been disturbing you for more than an hour already. It looks like if you don&apos;t give him a bottle of beer, he will chase you to death Give alms to {2}? (Enter &apos;Yes&apos; or &apos;No&apos;)
         ///.
         /// </summary>
         internal static string BeerBeggarWelcome {
@@ -181,10 +175,7 @@ namespace AnkhMorporkMVC.GameLogic.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to 
-        ///A random beggar named {0} ({1})
-        ///has been disturbing you for more than an hour already.
-        ///It looks like if you don&apos;t give him alms ( {2} ),
-        ///he will chase you to death
+        ///A random beggar named {0} ({1}) has been disturbing you for more than an hour already. It looks like if you don&apos;t give him alms ( {2} ), he will chase you to death
         ///Give alms to {3}? (Enter &apos;Yes&apos; or &apos;No&apos;)
         ///.
         /// </summary>
@@ -207,8 +198,7 @@ namespace AnkhMorporkMVC.GameLogic.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to 
-        ///{0} said that it will be sad for him
-        ///to joke around alone today and left.
+        ///{0} said that it will be sad for him to joke around alone today and left.
         ///.
         /// </summary>
         internal static string FoolEventFail {
@@ -230,9 +220,7 @@ namespace AnkhMorporkMVC.GameLogic.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to 
-        ///You met your highschool homie, {0} ({1})
-        ///He offers you to join him and earn some money ( {2} ) 
-        ///Wanna join him? (Enter &apos;Yes&apos; or &apos;No&apos;)
+        ///You met your highschool homie, {0} ({1}) He offers you to join him and earn some money ( {2} ) Wanna join him? (Enter &apos;Yes&apos; or &apos;No&apos;)
         ///.
         /// </summary>
         internal static string FoolEventWelcome {
@@ -243,8 +231,7 @@ namespace AnkhMorporkMVC.GameLogic.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to 
-        ///You&apos;re passing by the Mended Drum pub. They sell beer there 
-        ///for {0} per bottle. Enter and buy a beer? (Enter &apos;Yes&apos; or &apos;No&apos; )
+        ///You&apos;re passing by the Mended Drum pub. They sell beer there for {0} per bottle. Enter and buy a beer? (Enter &apos;Yes&apos; or &apos;No&apos; )
         ///.
         /// </summary>
         internal static string MendedDrumWelcome {
@@ -277,7 +264,7 @@ namespace AnkhMorporkMVC.GameLogic.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to 
-        ///Unfortunately, teh pub is closed.
+        ///Unfortunately, the pub is closed.
         ///.
         /// </summary>
         internal static string PubWasClosed {
@@ -288,7 +275,7 @@ namespace AnkhMorporkMVC.GameLogic.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to 
-        ///You were killed by {0}
+        ///You were killed by {0}.
         ///.
         /// </summary>
         internal static string ThieveEventFail {
@@ -321,11 +308,7 @@ namespace AnkhMorporkMVC.GameLogic.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to 
-        ///There&apos;s a thieve {0} on the way
-        ///and your back is against the wall
-        ///Thieve&apos;s demand is {1}
-        ///Your only way to survive is to pay off...
-        ///Give the money? (Enter &apos;Yes&apos; or &apos;No&apos;)
+        ///There&apos;s a thieve {0} on the way and your back is against the wall. Thieve&apos;s demand is {1}. Your only way to survive is to pay off... Give the money? (Enter &apos;Yes&apos; or &apos;No&apos;)
         ///.
         /// </summary>
         internal static string ThieveEventWelcome {
@@ -347,8 +330,7 @@ namespace AnkhMorporkMVC.GameLogic.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to 
-        ///Pocket {0}:
-        ///Beers {1} bottles;
+        ///Pocket: {0}; Beers: {1} bottle(s).
         ///
         ///.
         /// </summary>

@@ -5,62 +5,32 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<link rel="stylesheet" href="https://cdn.metroui.org.ua/v4.3.2/css/metro-all.min.css">
-<script src="https://cdn.metroui.org.ua/v4/js/metro.min.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-<!--<div class="grid">
+<div class="grid">
 <div class="row">
     <div class="cell-8"></div>
     <div class="cell-8"></div>
     <div class="cell-8"></div>
     <div class="img-container">
-        <img src="~/Resources/index_img.png">-->
-        @*<div class="image-overlay op-white">*@
-            <!--<div class="row flex-justify-center flex-align-center">
-                <button class="button primary large rounded cell-2" style="z-index: 1;margin-top:30%" onclick="document.location='/Home/GenerateGameEvent'">Start Game</button>
-            </div>-->
-        @*</div>*@
-    <!--</div>
-</div>
-</div>-->
+        <img src="~/Resources/index_img.png" style="width:100%;" />
+            <div class="img-container pos-fixed pos-left-center">
+                <img src="@Url.Content(Model.ImagePath)" style="width:400px;height:500px;margin-left:50px;">
+            </div>
 
-<div class="grid">
-        <div class="row">
-            <div class="cell-8"></div>
-            <div class="cell-8"></div>
-            <div class="cell-8"></div>
-            <div class="cell-8">
-                <div class="img-container">
-                    <img src="~/Resources/index_img.png">
-
-                    <div class="img-container pos-fixed pos-left-center">
-                        <img src="@Url.Content(Model.ImagePath)" style="width:400px;height:500px;margin-left:50px;">
-                    </div>
-
-                    <div class="cell-8 col-lg-offset-2">
-                        <div class="dialog pos-fixed pos-right-center" style="width:1000px;margin-right:50px;">
-                            <div class="dialog-title">@Model.output</div>
-                            <div class="dialog-actions">
-                                @Html.BeginForm("Event", @HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().Replace("Controller", ""))
-                                <div class="form-group">
-                                    @Html.EnumDropDownListFor(m => m.EventAnswer, htmlAttributes: new { @class = "form-control" })
-                                </div>
-                                <button type="submit" class="btn btn-primary">Continue</button>
+            <div class="cell-8 col-lg-offset-2">
+                <div class="dialog pos-fixed pos-right-center" style="width: 1000px; margin-right: 50px; background-color: #fce8d4 ">
+                    <div class="dialog-title" style="font-size:25px;">@Model.output</div>
+                    <div class="dialog-actions">
+                        Choose your answer..
+                        @using (Html.BeginForm("Event", @HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().Replace("Controller", "")))
+                        {
+                            <div class="form-group">
+                                @Html.EnumDropDownListFor(m => m.EventAnswer, htmlAttributes: new { @class = "form-control" })
                             </div>
-                        </div>
+                            <button type="submit" class="btn btn-primary">Continue</button>
+                        }
                     </div>
                 </div>
             </div>
-        </div>
     </div>
-
-<script type="text/javascript" language="javascript">
-    function DisableBackButton() {
-        window.history.forward()
-    }
-    DisableBackButton();
-    window.onload = DisableBackButton;
-    window.onpageshow = function (evt) { if (evt.persisted) DisableBackButton() }
-    window.onunload = function () { void (0) }
-</script>
+</div>
+</div>

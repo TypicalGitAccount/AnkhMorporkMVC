@@ -5,17 +5,24 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<img src="@Url.Content(Model.ImagePath)" style="width:40%;height:40%;">
-<h3>@Model.Output</h3>
-<h2>@((decimal)Model.User.BalancePennies/100) - Bablo)</h2>
-@Html.ActionLink("Home", "GenerateGameEvent", "Home");
+<div class="grid">
+    <div class="row">
+        <div class="cell-8"></div>
+        <div class="cell-8"></div>
+        <div class="cell-8"></div>
+        <div class="img-container">
+            <img src="~/Resources/index_img.png" style="width:100%;" />
+            <div class="img-container pos-fixed pos-left-center">
+                <img src="@Url.Content(Model.ImagePath)" style="width:400px;height:500px;margin-left:200px;">
+            </div>
 
-<script type="text/javascript" language="javascript">
-function DisableBackButton() {
-  window.history.forward()
-}
-DisableBackButton();
-window.onload = DisableBackButton;
-window.onpageshow = function(evt) { if (evt.persisted) DisableBackButton() }
-window.onunload = function() { void (0) }
-</script>
+            <div class="cell-8 col-lg-offset-2">
+                <div class="dialog pos-fixed pos-right-center img-rounded" style="width: 600px; margin-right: 200px; background-color:#fce8d4;">
+                    <h3>@Model.Output</h3>
+                    <h2>Balance - @((decimal)Model.User.BalancePennies/100)</h2>
+                    @Html.ActionLink("Continue", "GenerateGameEvent", "Home", routeValues: null, htmlAttributes: new { @class = "btn btn-primary", @role = "button" })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

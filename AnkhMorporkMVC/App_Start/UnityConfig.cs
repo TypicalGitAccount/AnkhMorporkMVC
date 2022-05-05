@@ -1,6 +1,4 @@
 using AnkhMorporkMVC.Controllers;
-using AnkhMorporkMVC.GameLogic.GameTools;
-using AnkhMorporkMVC.Models;
 using AnkhMorporkMVC.Repositories;
 using AnkhMorporkMVC.Services;
 using System.Web.Mvc;
@@ -15,15 +13,13 @@ namespace AnkhMorporkMVC
         public static void RegisterComponents()
         {
 			var container = new UnityContainer();
-            container.RegisterType<IGameEventService, GameEventService>();
-            container.RegisterType<IAssasinEventService, AssasinEventService>();
+            container.RegisterType<AssasinEventService>();
+            container.RegisterType<PubEventService>();
+            container.RegisterType<BeggarEventService>();
+            container.RegisterType<ThieveEventService>();
+            container.RegisterType<FoolEventService>();
             container.RegisterType<IGameEntitiesRepository, GameEntitiesRepository>();
-            container.RegisterType <IUserRepository, UserRepository>();
-            container.RegisterType <IGameController, GameController>();
-            container.RegisterType<AccountController>(new InjectionConstructor());
-            container.RegisterType<RolesAdminController>(new InjectionConstructor());
-            container.RegisterType<ManageController>(new InjectionConstructor());
-            container.RegisterType<UsersAdminController>(new InjectionConstructor());
+            container.RegisterType<IUserRepository, UserRepository>();
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }
     }

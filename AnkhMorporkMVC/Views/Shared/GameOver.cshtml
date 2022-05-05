@@ -4,18 +4,26 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>GameOver</h2>
-<img src="@Url.Content(Model.ImagePath)" style="width:40%;height:40%;">
-<h2>@Model.Output</h2>
-<h2>Your score - @Model.User.Moves<h2>
-@Html.ActionLink("Home", "Index", "Home")
+<div class="grid">
+    <div class="row">
+        <div class="cell-8"></div>
+        <div class="cell-8"></div>
+        <div class="cell-8"></div>
+        <div class="img-container">
+            <img src="~/Resources/index_img.png" style="width:100%;" />
+            <div class="img-container pos-fixed pos-left-center">
+                <img src="@Url.Content(Model.ImagePath)" style="width:400px;height:500px;margin-left:200px;">
+            </div>
 
-<script type="text/javascript" language="javascript">
-function DisableBackButton() {
-  window.history.forward()
-}
-DisableBackButton();
-window.onload = DisableBackButton;
-window.onpageshow = function(evt) { if (evt.persisted) DisableBackButton() }
-window.onunload = function() { void (0) }
-</script>
+            <div class="cell-8 col-lg-offset-2">
+                <div class="dialog pos-fixed pos-right-center img-rounded" style="width: 600px; margin-right: 200px; background-color:#fce8d4;">
+                    <h2>Game Over!</h2>
+                    <h2>@Model.Output</h2>
+                    <h2>
+                        Your score - @Model.User.Moves<h2>
+                            @Html.ActionLink("Home", "Index", "Home")
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -16,7 +16,6 @@ namespace AnkhMorporkMVC.Controllers
         {
             var rand = new Random();
             var eventControllers = Assembly.GetExecutingAssembly().GetTypes().Where(t => t.IsSubclassOf(typeof(GameEventController))).Select(t => t.Name).ToList();
-            eventControllers.Add(typeof(GameEventController).Name);
             var typeName = eventControllers[rand.Next(0, eventControllers.Count())].Replace("Controller", "");
             return RedirectToAction("StartGameEvent", typeName);
         }

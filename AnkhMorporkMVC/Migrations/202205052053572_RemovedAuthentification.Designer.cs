@@ -7,13 +7,13 @@ namespace AnkhMorporkMVC.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class AddImagePathFieldToGameEntityModel : IMigrationMetadata
+    public sealed partial class RemovedAuthentification : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddImagePathFieldToGameEntityModel));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(RemovedAuthentification));
         
         string IMigrationMetadata.Id
         {
-            get { return "202205041604033_AddImagePathFieldToGameEntityModel"; }
+            get { return "202205052053572_RemovedAuthentification"; }
         }
         
         string IMigrationMetadata.Source

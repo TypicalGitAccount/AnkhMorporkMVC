@@ -117,16 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="FinalWord" xml:space="preserve">
-    <value>
-
-Game over!
-Your score - {0} moves
-</value>
+  <data name="Target" xml:space="preserve">
+    <value>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</value>
   </data>
-  <data name="WelcomeWord" xml:space="preserve">
-    <value>
-Welcome to the world of Ankh-Morpork!
-</value>
+  <data name="DefaultSchema" xml:space="preserve">
+    <value>dbo</value>
   </data>
 </root>

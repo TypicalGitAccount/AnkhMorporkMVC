@@ -5,10 +5,9 @@ using System.Web.Mvc;
 
 namespace AnkhMorporkMVC.Controllers
 {
-    [Authorize]
     public class AssasinEventController : GameEventController
     {
-        public AssasinEventController(IAssasinEventService _service) : base(_service) { }
+        public AssasinEventController(AssasinEventService _service) : base(_service) { }
 
         public override ActionResult StartGameEvent()
         {
@@ -23,7 +22,7 @@ namespace AnkhMorporkMVC.Controllers
             if (model.EventAnswer == GameLogic.PredefinedData.UserOption.No)
             {
                 StringBuilder output;
-                ((IAssasinEventService)_gameService).ProcessAssasinReward(model.input, model.EventAnswer, out output);
+                ((AssasinEventService)_gameService).ProcessAssasinReward(model.input, model.EventAnswer, out output);
                 return GameOver(new GameOverViewModel(_gameService.GetUser(), output.ToString(), _gameService.GetEntityImgPath()));
             }
             var newModel = new AssasinRewardViewModel(model.input, model.EventAnswer, _gameService.GetEntityImgPath());
@@ -38,7 +37,7 @@ namespace AnkhMorporkMVC.Controllers
 
             StringBuilder output;
             var imgPath = _gameService.GetEntityImgPath();
-            if (((IAssasinEventService)_gameService).ProcessAssasinReward(model.Input, model.EventAnswer, out output))
+            if (((AssasinEventService)_gameService).ProcessAssasinReward(model.Input, model.EventAnswer, out output))
             {
                 return View("EventResponse", new EventResponseViewModel(output.ToString(), _gameService.GetUser(), imgPath));
             }

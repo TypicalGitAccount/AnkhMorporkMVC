@@ -1,17 +1,14 @@
 ﻿@{
     ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<link rel="stylesheet" href="https://cdn.metroui.org.ua/v4.3.2/css/metro-all.min.css">
-<script src="https://cdn.metroui.org.ua/v4/js/metro.min.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 <div class="grid">
     <div class="row">
         <div class="cell-8"></div>
         <div class="cell-8"></div>
         <div class="cell-8"></div>
-        <div class="img-container w-25">
+        <div class="img-container">
             <img src="~/Resources/index_img.png">
             <div class="image-overlay op-white">
                 <div class="row flex-justify-center flex-align-center">
@@ -22,12 +19,3 @@
     </div>
 </div>
 
-<script type="text/javascript" language="javascript">
-    function DisableBackButton() {
-        window.history.forward()
-    }
-    DisableBackButton();
-    window.onload = DisableBackButton;
-    window.onpageshow = function (evt) { if (evt.persisted) DisableBackButton() }
-    window.onunload = function () { void (0) }
-</script>

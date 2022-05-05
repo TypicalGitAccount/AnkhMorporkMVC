@@ -5,12 +5,11 @@ using System.Text;
 
 namespace AnkhMorporkMVC.Controllers
 {
-    [Authorize]
     public class GameEventController : Controller
     {
-        protected IGameEventService _gameService;
+        protected GameEventService _gameService;
 
-        public GameEventController(IGameEventService _service)
+        public GameEventController(GameEventService _service)
         {
             _gameService = _service;
         }
@@ -35,11 +34,6 @@ namespace AnkhMorporkMVC.Controllers
         public virtual ActionResult EventResponse(EventResponseViewModel model)
         {
             return View("EventResponse", model);
-        }
-
-        public virtual ActionResult DbError()
-        {
-            return View();
         }
 
         public virtual ActionResult GameOver(GameOverViewModel model)

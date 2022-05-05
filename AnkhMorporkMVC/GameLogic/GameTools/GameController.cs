@@ -6,9 +6,9 @@ using System.Reflection;
 
 namespace AnkhMorporkMVC.GameLogic.GameTools
 {
-    public class GameController : IGameController
+    public static class GameController
     {
-        public GameEntityEvent GenerateEvent(List<Type> except=null)
+        public static GameEntityEvent GenerateEvent(List<Type> except=null)
         {
             var events = Assembly.GetExecutingAssembly().GetTypes()
             .Where(t => t.IsSubclassOf(typeof(GameEntityEvent))).Except(new List<Type> { typeof(GameEntityEvent) }).ToList();

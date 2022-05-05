@@ -207,17 +207,16 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\IdentityConfig.cs" />
-    <Compile Include="App_Start\RolesAdminController.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
-    <Compile Include="App_Start\UsersAdminController.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AssasinEventController.cs" />
+    <Compile Include="Controllers\BeggarEventController.cs" />
+    <Compile Include="Controllers\FoolEventController.cs" />
     <Compile Include="Controllers\GameEventController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PubEventController.cs" />
+    <Compile Include="Controllers\ThieveEventController.cs" />
     <Compile Include="GameLogic\Entities\Assasin.cs" />
     <Compile Include="GameLogic\Entities\BeerBeggar.cs" />
     <Compile Include="GameLogic\Entities\Beggar.cs" />
@@ -232,7 +231,6 @@
     <Compile Include="GameLogic\Events\PubEvent.cs" />
     <Compile Include="GameLogic\Events\ThieveEvent.cs" />
     <Compile Include="GameLogic\GameTools\CurrencyConverter.cs" />
-    <Compile Include="GameLogic\GameTools\IGameController.cs" />
     <Compile Include="GameLogic\GameTools\User.cs" />
     <Compile Include="GameLogic\GameTools\GameController.cs" />
     <Compile Include="GameLogic\IO\InputProcessor.cs" />
@@ -248,11 +246,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Events.resx</DependentUpon>
-    </Compile>
-    <Compile Include="GameLogic\Resources\GameController.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GameController.resx</DependentUpon>
     </Compile>
     <Compile Include="GameLogic\States\AssasinState.cs" />
     <Compile Include="GameLogic\States\BeggarState.cs" />
@@ -290,18 +283,16 @@
     <Compile Include="Migrations\202204301409599_RemoveEventTypeFieldFromUserModel.designer.cs">
       <DependentUpon>202204301409599_RemoveEventTypeFieldFromUserModel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202205041604033_AddImagePathFieldToGameEntityModel.cs" />
-    <Compile Include="Migrations\202205041604033_AddImagePathFieldToGameEntityModel.designer.cs">
-      <DependentUpon>202205041604033_AddImagePathFieldToGameEntityModel.cs</DependentUpon>
+    <Compile Include="Migrations\202205052053572_RemovedAuthentification.cs" />
+    <Compile Include="Migrations\202205052053572_RemovedAuthentification.designer.cs">
+      <DependentUpon>202205052053572_RemovedAuthentification.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AssasinModel.cs" />
     <Compile Include="Models\BeggarModel.cs" />
+    <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\FoolModel.cs" />
     <Compile Include="Models\GameEntityModel.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PubModel.cs" />
     <Compile Include="Models\ThieveModel.cs" />
     <Compile Include="Models\UserModel.cs" />
@@ -313,9 +304,11 @@
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Resources\ImagePaths.cs" />
     <Compile Include="Services\AssasinEventService.cs" />
+    <Compile Include="Services\BeggarEventService.cs" />
+    <Compile Include="Services\FoolEventService.cs" />
     <Compile Include="Services\GameEventService.cs" />
-    <Compile Include="Services\IAssasinEventService.cs" />
-    <Compile Include="Services\IGameEventService.cs" />
+    <Compile Include="Services\PubEventService.cs" />
+    <Compile Include="Services\ThieveEventService.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AssasinRewardViewModel.cs" />
     <Compile Include="ViewModels\EventResponseViewModel.cs" />
@@ -337,6 +330,7 @@
     <Content Include="Resources\index_img.png" />
     <Content Include="Resources\pub_img.jpg" />
     <Content Include="Resources\thieve_img.jpg" />
+    <Content Include="Scripts\incative_back_button.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
@@ -364,31 +358,11 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
-    <Content Include="Views\Account\ConfirmEmail.cshtml" />
-    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
-    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
-    <Content Include="Views\Account\ForgotPassword.cshtml" />
-    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Account\ResetPassword.cshtml" />
-    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
-    <Content Include="Views\Account\SendCode.cshtml" />
-    <Content Include="Views\Account\VerifyCode.cshtml" />
-    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
-    <Content Include="Views\Manage\ChangePassword.cshtml" />
-    <Content Include="Views\Manage\Index.cshtml" />
-    <Content Include="Views\Manage\ManageLogins.cshtml" />
-    <Content Include="Views\Manage\SetPassword.cshtml" />
-    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\StartGameEvent.cshtml" />
     <Content Include="Views\Shared\GameOver.cshtml" />
     <Content Include="Views\Shared\EventResponse.cshtml" />
     <Content Include="Views\AssasinEvent\AssasinReward.cshtml" />
-    <Content Include="Views\Shared\DbError.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -410,10 +384,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Events.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="GameLogic\Resources\GameController.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>GameController.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202204282231229_InitialMigration.resx">
       <DependentUpon>202204282231229_InitialMigration.cs</DependentUpon>
     </EmbeddedResource>
@@ -429,8 +399,8 @@
     <EmbeddedResource Include="Migrations\202204301409599_RemoveEventTypeFieldFromUserModel.resx">
       <DependentUpon>202204301409599_RemoveEventTypeFieldFromUserModel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202205041604033_AddImagePathFieldToGameEntityModel.resx">
-      <DependentUpon>202205041604033_AddImagePathFieldToGameEntityModel.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202205052053572_RemovedAuthentification.resx">
+      <DependentUpon>202205052053572_RemovedAuthentification.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

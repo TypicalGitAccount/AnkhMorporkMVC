@@ -5,26 +5,31 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>AssasinEvent</h2>
-<img src="@Url.Content(Model.ImagePath)" style="width:40%;height:40%;">
-@using (Html.BeginForm("AssasinReward", @HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().Replace("Controller", "")))
-{
-    <div>Say your reward!</div>
-    <div class="form-group">
-        @Html.Hidden("ImagePath", Model.ImagePath)
-        @Html.Hidden("EventAnswer", Model.EventAnswer)
-        @Html.TextBoxFor(m => m.Input, new {@class = "form-control"})
-        @Html.ValidationMessageFor(m => m.Input)
-    </div>
-    <button type="submit" class="btn btn-primary">Enter</button>
-}
+<div class="grid">
+    <div class="row">
+        <div class="cell-8"></div>
+        <div class="cell-8"></div>
+        <div class="cell-8"></div>
+        <div class="img-container">
+            <img src="~/Resources/index_img.png" style="width:100%;" />
+            <div class="img-container pos-fixed pos-left-center">
+                <img src="@Url.Content(Model.ImagePath)" style="width:400px;height:500px;margin-left:400px;">
+            </div>
 
-<script type="text/javascript" language="javascript">
-function DisableBackButton() {
-  window.history.forward()
-}
-DisableBackButton();
-window.onload = DisableBackButton;
-window.onpageshow = function(evt) { if (evt.persisted) DisableBackButton() }
-window.onunload = function() { void (0) }
-</script>
+            <div class="cell-8 col-lg-offset-2">
+                <div class="dialog pos-fixed pos-right-center img-rounded" style="width: 300px; margin-right: 400px; background-color:#fce8d4;">
+                    @using (Html.BeginForm("AssasinReward", @HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().Replace("Controller", "")))
+                    {
+                        <div>Say your reward!</div>
+                        @Html.Hidden("ImagePath", Model.ImagePath)
+                        @Html.Hidden("EventAnswer", Model.EventAnswer)
+                        @Html.TextBoxFor(m => m.Input, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Input)
+                        <button type="submit" class="btn btn-primary">Enter</button>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -51,7 +51,7 @@ namespace AnkhMorpork.GameLogic.Events
                 decimal value;
                 var result = decimal.TryParse(input, NumberStyles.AllowDecimalPoint, CultureInfo.CreateSpecificCulture("en-US"), out value);
 
-                return result && value > (int)AssasinRewardPennies.MinRewardPennies && 
+                return result && value >= (int)AssasinRewardPennies.MinRewardPennies && 
                 value <= CurrencyConverter.PenniesToDollars((int)AssasinRewardPennies.MaxRewardPennies);
             });
         }
