@@ -10,10 +10,7 @@ namespace AnkhMorporkMVC.GameLogic.GameTools
         private int moves;
         public int Moves
         {
-            get
-            { 
-                return moves; 
-            }
+            get => moves;
             set
             {
                 if (value < 0)
@@ -25,10 +22,7 @@ namespace AnkhMorporkMVC.GameLogic.GameTools
         private int balancePennies;
         public int BalancePennies
         {
-            get
-            { 
-                return balancePennies;
-            }
+            get => balancePennies;
             set
             {
                 if (value < 0f)
@@ -42,18 +36,9 @@ namespace AnkhMorporkMVC.GameLogic.GameTools
 
         public byte Beers
         {
-            get
-            {
-                return beers;
-            }
+            get => beers;
 
-            set
-            {
-                if (value < 0)
-                    throw new ArgumentOutOfRangeException("Beers variable can't be < 0");
-
-                beers = value;
-            }
+            set { beers = value; }
         }
 
         public User(int startBalancePennies = (int)PredefinedData.User.StartBalancePennies, byte beers = (byte)PredefinedData.User.StartBeers, int moves=0)
@@ -65,10 +50,7 @@ namespace AnkhMorporkMVC.GameLogic.GameTools
 
         public UserModel ToModel()
         {
-            var model = new UserModel();
-            model.Moves = Moves;
-            model.BalancePennies = BalancePennies;
-            model.Beers = Beers;
+            var model = new UserModel() { Moves = this.Moves, BalancePennies = this.BalancePennies, Beers = this.Beers };
             return model;
         }
     }

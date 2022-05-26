@@ -3,16 +3,16 @@ using AnkhMorporkMVC.GameLogic.States;
 
 namespace AnkhMorporkMVC.Models
 {
-    public class AssasinModel : GameEntityModel
+    public class AssassinModel : GameEntityModel
     {   
         public int minRewardPennies { get; set; }
         public int maxRewardPennies { get; set; }
 
         public bool IsOccupied { get; set; }
 
-        public override GameEntity ToObject()
+        public override GameEntity FillProperties()
         {
-            return new Assasin(new AssasinState(minRewardPennies, maxRewardPennies, Name, IsOccupied));
+            return new Assassin(new AssasinState(minRewardPennies, maxRewardPennies, Name, IsOccupied));
         }
     }
 }

@@ -21,7 +21,9 @@ namespace AnkhMorporkMVC.GameLogic.IO
                 }
             );
 
-            return (bool)method.Invoke(null, new object[] { input, temp });
+            var result = method.Invoke(null, new object[] { input, temp });
+            if (result == null) { return false; }
+            return (bool)result;
         }
 
         public static bool ValidInput(string input, Type typeToValidate, Func<object, bool> check = null)

@@ -7,7 +7,7 @@ namespace AnkhMorporkMVC.Models
     {
         public string PracticeName { get; set; }
 
-        public override GameEntity ToObject()
+        public override GameEntity FillProperties()
         {
             return new Fool(new FoolState(Name, PracticeName, InteractionCostPennies));
         }

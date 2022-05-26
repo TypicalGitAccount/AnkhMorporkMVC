@@ -1,7 +1,7 @@
-﻿@model AnkhMorporkMVC.ViewModels.AssasinRewardViewModel
+﻿@model AnkhMorporkMVC.ViewModels.AssassinRewardViewModel
 
 @{
-    ViewBag.Title = "AssasinEvent";
+    ViewBag.Title = "AssassinEvent";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -18,7 +18,7 @@
 
             <div class="cell-8 col-lg-offset-2">
                 <div class="dialog pos-fixed pos-right-center img-rounded" style="width: 300px; margin-right: 400px; background-color:#fce8d4;">
-                    @using (Html.BeginForm("AssasinReward", @HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().Replace("Controller", "")))
+                    @using (Html.BeginForm("AssassinReward", @HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().Replace("Controller", "")))
                     {
                         <div>Say your reward!</div>
                         @Html.Hidden("ImagePath", Model.ImagePath)

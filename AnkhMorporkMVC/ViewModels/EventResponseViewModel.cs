@@ -8,5 +8,7 @@ namespace AnkhMorporkMVC.ViewModels
         public User User { get; set; }
         public string ImagePath { get; set; }
         public EventResponseViewModel(string output, User user, string imagePath) { Output = output; User = user; ImagePath = imagePath; }
+
+        public EventResponseViewModel() { }
     }
 }

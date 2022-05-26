@@ -50,7 +50,7 @@ namespace AnkhMorporkMVC.Tests.Repositories
             testRepo.CreateUpdate(testModels);
             mockDb.Verify(m => m.GameEntities.Add(It.IsAny<GameEntityModel>()), Times.Once());
 
-            var dbObj = data.FirstOrDefault().ToObject();
+            var dbObj = data.FirstOrDefault().FillProperties();
             Assert.That(dbObj.State.Name == testModels[0].State.Name);
             Assert.That(dbObj.State.InteractionCostPennies == testModels[0].State.InteractionCostPennies);
         }
@@ -65,13 +65,13 @@ namespace AnkhMorporkMVC.Tests.Repositories
             mockDb.Setup(m => m.GameEntities.Add(It.IsAny<GameEntityModel>())).Callback((GameEntityModel u) => data = data.Append(u).AsQueryable());
             mockDb.Setup(m => m.GameEntities.RemoveRange(It.IsAny<IEnumerable<GameEntityModel>>()))
                 .Callback((IEnumerable<GameEntityModel> oldModels) => data = data.Except(oldModels));
-            var newObj = new Assasin(1, 100, "testAssasin", false);
+            var newObj = new Assassin(1, 100, "testAssasin", false);
             var testRepo = new GameEntitiesRepository(mockDb.Object);
 
             testRepo.CreateUpdate(new List<GameEntity>() { newObj });
 
             Assert.That(data.Count() == 1);
-            Assert.That(data.FirstOrDefault().ToObject().State is AssasinState);
+            Assert.That(data.FirstOrDefault().FillProperties().State is AssasinState);
         }
 
         [Test]

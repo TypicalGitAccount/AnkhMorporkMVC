@@ -7,7 +7,7 @@ namespace AnkhMorporkMVC.Models
     {
         public bool IsOpen { get; set; }
 
-        public override GameEntity ToObject()
+        public override GameEntity FillProperties()
         {
             return new Pub(new PubState(Name, InteractionCostPennies, IsOpen));
         }

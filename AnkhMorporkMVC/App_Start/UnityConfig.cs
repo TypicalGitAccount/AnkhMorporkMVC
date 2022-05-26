@@ -1,9 +1,7 @@
-using AnkhMorporkMVC.Controllers;
 using AnkhMorporkMVC.Repositories;
 using AnkhMorporkMVC.Services;
 using System.Web.Mvc;
 using Unity;
-using Unity.Injection;
 using Unity.Mvc5;
 
 namespace AnkhMorporkMVC
@@ -13,7 +11,7 @@ namespace AnkhMorporkMVC
         public static void RegisterComponents()
         {
 			var container = new UnityContainer();
-            container.RegisterType<AssasinEventService>();
+            container.RegisterType<AssassinEventService>();
             container.RegisterType<PubEventService>();
             container.RegisterType<BeggarEventService>();
             container.RegisterType<ThieveEventService>();

@@ -76,9 +76,9 @@ namespace AnkhMorporkMVC.GameLogic.Resources {
         ///Unfriendly people didn&apos;t like the reward you offered. 
         ///.
         /// </summary>
-        internal static string AssasinEventRewardGuessedWrong {
+        internal static string AssassinEventRewardGuessedWrong {
             get {
-                return ResourceManager.GetString("AssasinEventRewardGuessedWrong", resourceCulture);
+                return ResourceManager.GetString("AssassinEventRewardGuessedWrong", resourceCulture);
             }
         }
         
@@ -87,9 +87,9 @@ namespace AnkhMorporkMVC.GameLogic.Resources {
         ///Say your reward!(You have only 1 try to guess)
         ///.
         /// </summary>
-        internal static string AssasinEventRewardGuessWelcome {
+        internal static string AssassinEventRewardGuessWelcome {
             get {
-                return ResourceManager.GetString("AssasinEventRewardGuessWelcome", resourceCulture);
+                return ResourceManager.GetString("AssassinEventRewardGuessWelcome", resourceCulture);
             }
         }
         
@@ -99,9 +99,9 @@ namespace AnkhMorporkMVC.GameLogic.Resources {
         ///and disappeared in the dark.
         ///.
         /// </summary>
-        internal static string AssasinEventSuccess {
+        internal static string AssassinEventSuccess {
             get {
-                return ResourceManager.GetString("AssasinEventSuccess", resourceCulture);
+                return ResourceManager.GetString("AssassinEventSuccess", resourceCulture);
             }
         }
         
@@ -112,9 +112,9 @@ namespace AnkhMorporkMVC.GameLogic.Resources {
         ///Accept the offer? (Enter &apos;Yes&apos; or &apos;No&apos;)
         ///.
         /// </summary>
-        internal static string AssasinEventWelcome {
+        internal static string AssassinEventWelcome {
             get {
-                return ResourceManager.GetString("AssasinEventWelcome", resourceCulture);
+                return ResourceManager.GetString("AssassinEventWelcome", resourceCulture);
             }
         }
         
@@ -123,9 +123,9 @@ namespace AnkhMorporkMVC.GameLogic.Resources {
         ///Wrong input, please enter your reward (positive number)!
         ///.
         /// </summary>
-        internal static string AssasinEventWrongReward {
+        internal static string AssassinEventWrongReward {
             get {
-                return ResourceManager.GetString("AssasinEventWrongReward", resourceCulture);
+                return ResourceManager.GetString("AssassinEventWrongReward", resourceCulture);
             }
         }
         
@@ -318,6 +318,15 @@ namespace AnkhMorporkMVC.GameLogic.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The thieve has released you, cause there are too much thefts in this city...
+        /// </summary>
+        internal static string ThieveTooMuchThefts {
+            get {
+                return ResourceManager.GetString("ThieveTooMuchThefts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 
         ///Your hands are busy, you can&apos;t buy a beer.
         ///.
@@ -325,6 +334,15 @@ namespace AnkhMorporkMVC.GameLogic.Resources {
         internal static string TooMuchBeer {
             get {
                 return ResourceManager.GetString("TooMuchBeer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stranger.
+        /// </summary>
+        internal static string UnknownEntityName {
+            get {
+                return ResourceManager.GetString("UnknownEntityName", resourceCulture);
             }
         }
         

@@ -10,7 +10,7 @@ namespace AnkhMorporkMVC.GameLogic.Strategies
         {
             if (AreNull(user, characterState))
                 throw new ArgumentException("Arguments can't be null");
-
+            
             if (user.BalancePennies < characterState.InteractionCostPennies)
                 return InteractionResult.InsufficientBalance;
 

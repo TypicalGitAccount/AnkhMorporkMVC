@@ -23,9 +23,7 @@ namespace AnkhMorporkMVC.GameLogic.Entities
 
         public virtual GameEntityModel ToModel()
         { 
-            var model = new GameEntityModel();
-            model.Name = State.Name;
-            model.InteractionCostPennies = State.InteractionCostPennies;
+            var model = new GameEntityModel() { Name = State.Name, InteractionCostPennies = State.InteractionCostPennies };
             return model;
         }
     }

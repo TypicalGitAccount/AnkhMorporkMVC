@@ -22,12 +22,9 @@ namespace AnkhMorporkMVC.Models
             Beers = user.Beers;
         }
 
-        public User ToObject()
+        public User FillProperties()
         {
-            var user = new User();
-            user.BalancePennies = BalancePennies;
-            user.Moves = Moves;
-            user.Beers = Beers;
+            var user = new User() { BalancePennies = this.BalancePennies, Moves = this.Moves, Beers = this.Beers };
             return user;
         }
     }

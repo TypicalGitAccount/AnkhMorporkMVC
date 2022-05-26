@@ -7,7 +7,7 @@ namespace AnkhMorporkMVC.Models
     {
         public int TheftsHappened { get; set; }
 
-        public override GameEntity ToObject()
+        public override GameEntity FillProperties()
         {
             return new Thieve(new ThieveState(Name, InteractionCostPennies));
         }

@@ -6,13 +6,13 @@ using System.Text;
 
 namespace AnkhMorporkMVC.Services
 {
-    public class AssasinEventService : GameEventService
+    public class AssassinEventService : GameEventService
     {
-        public AssasinEventService(IUserRepository userRepository, IGameEntitiesRepository entitiesRepository) : base(userRepository, entitiesRepository) { }
+        public AssassinEventService(IUserRepository userRepository, IGameEntitiesRepository entitiesRepository) : base(userRepository, entitiesRepository) { }
 
         public override GameEntityEvent GetEvent()
         {
-            return new AssasinEvent();
+            return new AssassinEvent();
         }
 
         public override bool ProcessEvent(UserOption eventAnswer, out StringBuilder output)
@@ -22,14 +22,14 @@ namespace AnkhMorporkMVC.Services
 
         public bool ValidateReward(string rewardInput)
         {
-            return AssasinEvent.ValidRewardInput(rewardInput);
+            return AssassinEvent.ValidRewardInput(rewardInput);
         }
 
-        public bool ProcessAssasinReward(string rewardInput, UserOption eventAnswer, out StringBuilder output)
+        public bool ProcessAssassinReward(string rewardInput, UserOption eventAnswer, out StringBuilder output)
         {
-            var user = _userRepository.Get().ToObject();
+            var user = _userRepository.Get().FillProperties();
             var gameEntities = GetEntities();
-            if (new AssasinEvent().Run(gameEntities, user, eventAnswer, out output, rewardInput))
+            if (new AssassinEvent().Run(gameEntities, user, eventAnswer, out output, rewardInput))
             {
                 _userRepository.CreateUpdate(user.ToModel());
                 return true;

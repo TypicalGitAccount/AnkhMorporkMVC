@@ -17,11 +17,13 @@ namespace AnkhMorporkMVC.GameLogic.Entities
 
         public override GameEntityModel ToModel()
         {
-            var model = new BeggarModel();
-            model.Name = State.Name;
-            model.InteractionCostPennies = State.InteractionCostPennies;
-            model.PracticeName = ((BeggarState)State).PracticeName;
-            model.ImagePath = ImagePaths.BeggarImagePath;
+            var model = new BeggarModel()
+            {
+                Name = State.Name,
+                InteractionCostPennies = State.InteractionCostPennies,
+                PracticeName = ((BeggarState)State).PracticeName,
+                ImagePath = ImagePaths.BeggarImagePath
+            };
             return model;
         }
     }

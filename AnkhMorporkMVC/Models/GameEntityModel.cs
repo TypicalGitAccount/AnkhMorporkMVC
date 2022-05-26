@@ -13,7 +13,7 @@ namespace AnkhMorporkMVC.Models
 
         public string ImagePath { get; set; }
 
-        public virtual GameEntity ToObject()
+        public virtual GameEntity FillProperties()
         {
             throw new NotImplementedException();
         }

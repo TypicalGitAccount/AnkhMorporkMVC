@@ -13,11 +13,9 @@ namespace AnkhMorporkMVC.GameLogic.Entities
 
         public override GameEntityModel ToModel()
         {
-            var model = new ThieveModel();
-            model.Name = State.Name;
-            model.InteractionCostPennies = State.InteractionCostPennies;
-            model.TheftsHappened = ThieveState.TheftsHappened;
-            model.ImagePath = ImagePaths.ThieveImagePath;
+            var model = new ThieveModel()
+            { Name = State.Name, InteractionCostPennies = State.InteractionCostPennies, 
+                ImagePath = ImagePaths.ThieveImagePath, TheftsHappened = ThieveState.TheftsHappened };
             return model;
         }
     }

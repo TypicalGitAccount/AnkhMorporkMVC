@@ -30,14 +30,21 @@ namespace AnkhMorpork.GameLogic.Events
             {
                 var pub = (AnkhMorporkMVC.GameLogic.Entities.Pub)GenerateEntities()[0];
                 var result = pub.Interact(user);
-                if (result == InteractionResult.InteractionSuccessful)
-                    output.Append(AnkhMorporkMVC.GameLogic.Resources.Events.PubInteractionSuccesfull);
-                if (result == InteractionResult.GameLocationisClosed)
-                    output.Append(AnkhMorporkMVC.GameLogic.Resources.Events.PubWasClosed);
-                if (result == InteractionResult.UserCantCarryMoreBeers)
-                    output.Append(AnkhMorporkMVC.GameLogic.Resources.Events.TooMuchBeer);
-                if (result == InteractionResult.InsufficientBalance)
-                    output.Append(AnkhMorporkMVC.GameLogic.Resources.Events.PubNotEnoughMoney);
+                switch (result)
+                { 
+                    case InteractionResult.GameLocationisClosed:
+                        output.Append(AnkhMorporkMVC.GameLogic.Resources.Events.PubWasClosed);
+                        break;
+                    case InteractionResult.UserCantCarryMoreBeers:
+                        output.Append(AnkhMorporkMVC.GameLogic.Resources.Events.TooMuchBeer);
+                        break;
+                    case InteractionResult.InsufficientBalance:
+                        output.Append(AnkhMorporkMVC.GameLogic.Resources.Events.PubNotEnoughMoney);
+                        break;
+                    default:
+                        output.Append(AnkhMorporkMVC.GameLogic.Resources.Events.PubInteractionSuccesfull);
+                        break;
+                }
             }
 
             return true;

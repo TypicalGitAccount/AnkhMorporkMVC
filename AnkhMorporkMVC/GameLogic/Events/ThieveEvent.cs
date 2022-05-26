@@ -19,7 +19,8 @@ namespace AnkhMorpork.GameLogic.Events
             return string.Format(AnkhMorporkMVC.GameLogic.Resources.Events.UserBalanceOutput,
                 CurrencyConverter.PenniesToString(user.BalancePennies), user.Beers) +
                 string.Format(AnkhMorporkMVC.GameLogic.Resources.Events.ResourceManager.GetString("ThieveEventWelcome"),
-                entity.State.Name, CurrencyConverter.PenniesToString(entity.State.InteractionCostPennies));
+                entity.State.Name ?? AnkhMorporkMVC.GameLogic.Resources.Events.UnknownEntityName,
+                CurrencyConverter.PenniesToString(entity.State.InteractionCostPennies));
         }
 
         public override bool Run(List<GameEntity> entities, AnkhMorporkMVC.GameLogic.GameTools.User user, UserOption answer, out StringBuilder output, string userInput = null)
@@ -28,14 +29,22 @@ namespace AnkhMorpork.GameLogic.Events
             var entity = entities[0];
             if (answer == UserOption.Yes)
             {
-                if (entity.Interact(user) == InteractionResult.InteractionSuccessful)
+                var result = entity.Interact(user);
+                if (result == InteractionResult.InteractionSuccessful)
                 {
-                    output.Append(string.Format(AnkhMorporkMVC.GameLogic.Resources.Events.ThieveEventSuccess, entity.State.Name));
+                    output.Append(string.Format(AnkhMorporkMVC.GameLogic.Resources.Events.ThieveEventSuccess, 
+                        entity.State.Name ?? AnkhMorporkMVC.GameLogic.Resources.Events.UnknownEntityName));
+                    return true;
+                }
+                else if (result == InteractionResult.TooMuchThefts)
+                {
+                    output.Append(AnkhMorporkMVC.GameLogic.Resources.Events.ThieveTooMuchThefts);
                     return true;
                 }
                 output.Append(AnkhMorporkMVC.GameLogic.Resources.Events.ThieveEventNotEnoughMoney);
             }
-            output.Append(string.Format(AnkhMorporkMVC.GameLogic.Resources.Events.ThieveEventFail, entity.State.Name));
+            output.Append(string.Format(AnkhMorporkMVC.GameLogic.Resources.Events.ThieveEventFail, 
+                entity.State.Name ?? AnkhMorporkMVC.GameLogic.Resources.Events.UnknownEntityName));
             return false;
         }
     }

@@ -9,36 +9,36 @@ using System.Text;
 
 namespace AnkhMorpork.GameLogic.Events
 {
-    public class AssasinEvent : GameEntityEvent
+    public class AssassinEvent : GameEntityEvent
     {
-        protected int randomMinRewardPennies()
+        protected int RandomMinRewardPennies()
         {
-            return rand.Next((int)AssasinRewardPennies.MinRewardPennies, (int)AssasinRewardPennies.MaxRewardPennies);
+            return rand.Next((int)AssassinRewardPennies.MinRewardPennies, (int)AssassinRewardPennies.MaxRewardPennies);
         }
 
-        protected int randomMaxRewardPennies(int minRewardPennies)
+        protected int RandomMaxRewardPennies(int minRewardPennies)
         {
-            return rand.Next(minRewardPennies, (int)AssasinRewardPennies.MaxRewardPennies);
+            return rand.Next(minRewardPennies, (int)AssassinRewardPennies.MaxRewardPennies);
         }
 
-        private GameEntity RandomAssasin()
+        private GameEntity RandomAssassin()
         {
             var random = new Random();
-            var rewardMin = randomMinRewardPennies();
-            var rewardMax = randomMaxRewardPennies(rewardMin);
+            var rewardMin = RandomMinRewardPennies();
+            var rewardMax = RandomMaxRewardPennies(rewardMin);
             var name = randomName();
             var isOccupied = random.Next(2) == 1;
 
-            return new Assasin(rewardMin, rewardMax, name, isOccupied);
+            return new Assassin(rewardMin, rewardMax, name, isOccupied);
         }
 
         public override List<GameEntity> GenerateEntities()
         {
             var random = new Random();
             List<GameEntity> entities = new List<GameEntity>();
-            for ( int i = 0; i < random.Next((int)AssasinGang.MinMembers, (int)AssasinGang.MaxMembers); i++ )
+            for ( int i = 0; i < random.Next((int)AssassinGang.MinMembers, (int)AssassinGang.MaxMembers); i++ )
             {
-                entities.Add(RandomAssasin());
+                entities.Add(RandomAssassin());
             }
 
             return entities;
@@ -51,8 +51,8 @@ namespace AnkhMorpork.GameLogic.Events
                 decimal value;
                 var result = decimal.TryParse(input, NumberStyles.AllowDecimalPoint, CultureInfo.CreateSpecificCulture("en-US"), out value);
 
-                return result && value >= (int)AssasinRewardPennies.MinRewardPennies && 
-                value <= CurrencyConverter.PenniesToDollars((int)AssasinRewardPennies.MaxRewardPennies);
+                return result && value >= (int)AssassinRewardPennies.MinRewardPennies && 
+                value <= CurrencyConverter.PenniesToDollars((int)AssassinRewardPennies.MaxRewardPennies);
             });
         }
 
@@ -60,7 +60,7 @@ namespace AnkhMorpork.GameLogic.Events
         {
             return string.Format(AnkhMorporkMVC.GameLogic.Resources.Events.UserBalanceOutput,
                 CurrencyConverter.PenniesToString(user.BalancePennies), user.Beers) +
-                AnkhMorporkMVC.GameLogic.Resources.Events.AssasinEventWelcome;
+                AnkhMorporkMVC.GameLogic.Resources.Events.AssassinEventWelcome;
         }
 
         public override bool Run(List<GameEntity> entities, AnkhMorporkMVC.GameLogic.GameTools.User user, UserOption answer, out StringBuilder output, string userInput = null)
@@ -71,16 +71,16 @@ namespace AnkhMorpork.GameLogic.Events
                 decimal.TryParse(userInput, out decimal result);
                 var guessedRewardPennies = CurrencyConverter.DollarsToPennies(result);
 
-                foreach (var assasin in entities)
+                foreach (var assassin in entities)
                 {
-                    assasin.State.InteractionCostPennies = guessedRewardPennies;
-                    if (assasin.Interact(user) == InteractionResult.InteractionSuccessful)
+                    assassin.State.InteractionCostPennies = guessedRewardPennies;
+                    if (assassin.Interact(user) == InteractionResult.InteractionSuccessful)
                     {
-                        output.Append(AnkhMorporkMVC.GameLogic.Resources.Events.AssasinEventSuccess);
+                        output.Append(AnkhMorporkMVC.GameLogic.Resources.Events.AssassinEventSuccess);
                         return true;
                     }
                 }
-                output.Append(AnkhMorporkMVC.GameLogic.Resources.Events.AssasinEventRewardGuessedWrong);
+                output.Append(AnkhMorporkMVC.GameLogic.Resources.Events.AssassinEventRewardGuessedWrong);
             }
             output.Append(AnkhMorporkMVC.GameLogic.Resources.Events.AssasinEventFail);
             return false;

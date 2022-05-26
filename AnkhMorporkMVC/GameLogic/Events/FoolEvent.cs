@@ -31,7 +31,8 @@ namespace AnkhMorpork.GameLogic.Events
             return string.Format(AnkhMorporkMVC.GameLogic.Resources.Events.UserBalanceOutput,
                 CurrencyConverter.PenniesToString(user.BalancePennies), user.Beers) +
                 string.Format(AnkhMorporkMVC.GameLogic.Resources.Events.ResourceManager.GetString("FoolEventWelcome"),
-                entity.State.Name, ((FoolState)entity.State).PracticeName, CurrencyConverter.PenniesToString(entity.State.InteractionCostPennies));
+                entity.State.Name ?? AnkhMorporkMVC.GameLogic.Resources.Events.UnknownEntityName,
+                ((FoolState)entity.State).PracticeName, CurrencyConverter.PenniesToString(entity.State.InteractionCostPennies));
         }
 
         public override bool Run(List<GameEntity> entities, AnkhMorporkMVC.GameLogic.GameTools.User user, UserOption answer, out StringBuilder output, string userInput = null)
@@ -45,7 +46,8 @@ namespace AnkhMorpork.GameLogic.Events
             }
             else
             {
-                output.Append(string.Format(AnkhMorporkMVC.GameLogic.Resources.Events.FoolEventFail, entity.State.Name));
+                output.Append(string.Format(AnkhMorporkMVC.GameLogic.Resources.Events.FoolEventFail, 
+                    entity.State.Name ?? AnkhMorporkMVC.GameLogic.Resources.Events.UnknownEntityName));
             }
             return true;
         }

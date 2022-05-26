@@ -58,20 +58,20 @@ namespace AnkhMorpork.GameLogic.Events
                 var result = entity.Interact(user);
                 if (result == InteractionResult.InteractionSuccessful)
                 {
-                    output.Append(string.Format(AnkhMorporkMVC.GameLogic.Resources.Events.ResourceManager.GetString("BeggarEventSuccess"),
-                        entity.State.Name));
+                    output.Append(string.Format(AnkhMorporkMVC.GameLogic.Resources.Events.BeggarEventSuccess,
+                        entity.State.Name ?? AnkhMorporkMVC.GameLogic.Resources.Events.UnknownEntityName));
                     return true;
                 }
 
                 if (result == InteractionResult.InsufficientBalance)
-                    output.Append(AnkhMorporkMVC.GameLogic.Resources.Events.ResourceManager.GetString("BeggarEventNotEnoughMoney"));
+                    output.Append(AnkhMorporkMVC.GameLogic.Resources.Events.BeggarEventNotEnoughMoney);
 
                 if (entity is BeerBeggar && result == InteractionResult.UserHasNoBeer)
                     output.Append(AnkhMorporkMVC.GameLogic.Resources.Events.BeggarNoBeer);
             }
 
-            output.Append(string.Format(AnkhMorporkMVC.GameLogic.Resources.Events.ResourceManager.GetString("BeggarEventFail"),
-                        entity.State.Name));
+            output.Append(string.Format(AnkhMorporkMVC.GameLogic.Resources.Events.BeggarEventFail,
+                        entity.State.Name ?? AnkhMorporkMVC.GameLogic.Resources.Events.UnknownEntityName));
             return false;
         }
     }

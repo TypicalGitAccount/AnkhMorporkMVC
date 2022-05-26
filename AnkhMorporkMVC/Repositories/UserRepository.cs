@@ -28,18 +28,16 @@ namespace AnkhMorporkMVC.Repositories
         public void Delete()
         {
             var userModel = _context.User.FirstOrDefault();
-            if ( userModel != null )
+            if (userModel != null)
+            {
                 _context.User.Remove(_context.User.First());
                 _context.SaveChanges();
+            }
         }
 
         public UserModel Get()
         {
-            var userModel = _context.User.FirstOrDefault();
-            if (userModel == null)
-                return null;
-
-            return userModel;
+            return _context.User.FirstOrDefault();
         }
     }
 }

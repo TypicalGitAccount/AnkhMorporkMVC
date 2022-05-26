@@ -17,18 +17,17 @@ namespace AnkhMorporkMVC.Controllers
         public virtual ActionResult StartGameEvent()
         {
             var output = _gameService.StartGameEvent();
-            return View(new IOViewModel(output: output, imagePath:_gameService.GetEntityImgPath()));
+            return View(new IOViewModel(output, _gameService.GetEntityImgPath()));
         }
 
         [HttpPost]
         public virtual ActionResult Event(IOViewModel model)
         {
-            StringBuilder output;
             var imgPath = _gameService.GetEntityImgPath();
-            if (_gameService.ProcessEvent(model.EventAnswer, out output))
-                return EventResponse(new EventResponseViewModel(output.ToString(), _gameService.GetUser(), imgPath));
 
-            return GameOver(new GameOverViewModel(_gameService.GetUser(), output.ToString(), imgPath));
+            return _gameService.ProcessEvent(model.EventAnswer, out StringBuilder output) == true ?
+                EventResponse(new EventResponseViewModel(output.ToString(), _gameService.GetUser(), imgPath))
+                : GameOver(new GameOverViewModel(_gameService.GetUser(), output.ToString(), imgPath));
         }
 
         public virtual ActionResult EventResponse(EventResponseViewModel model)

@@ -6,7 +6,7 @@ namespace AnkhMorporkMVC.Models
     {
         public virtual DbSet<UserModel> User { get; set; }
         public virtual DbSet<GameEntityModel> GameEntities { get; set; }
-        public virtual DbSet<AssasinModel> Assasins { get; set; }
+        public virtual DbSet<AssassinModel> Assassins { get; set; }
         public virtual DbSet<ThieveModel> Thieves { get; set; }
         public virtual DbSet<BeggarModel> Beggars { get; set; }
         public virtual DbSet<PubModel> Pubs { get; set; }

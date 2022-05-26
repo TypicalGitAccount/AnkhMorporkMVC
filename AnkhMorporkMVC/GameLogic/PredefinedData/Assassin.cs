@@ -1,12 +1,12 @@
 ﻿namespace AnkhMorporkMVC.GameLogic.PredefinedData
 {
-    public enum AssasinRewardPennies
+    public enum AssassinRewardPennies
     {
         MinRewardPennies = 1,
         MaxRewardPennies = User.StartBalancePennies/2
     }
 
-    public enum AssasinGang
+    public enum AssassinGang
     {
         MinMembers = 4,
         MaxMembers = 10
