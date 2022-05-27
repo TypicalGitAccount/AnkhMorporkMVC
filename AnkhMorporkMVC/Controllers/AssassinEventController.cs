@@ -11,8 +11,8 @@ namespace AnkhMorporkMVC.Controllers
 
         public override ActionResult StartGameEvent()
         {
-            var output = _gameService.StartGameEvent();
-            var img = _gameService.GetEntityImgPath();
+            var output = GameService.StartGameEvent();
+            var img = GameService.GetEntityImgPath();
             return View(new IOViewModel(output: output, imagePath:img));
         }
 
@@ -20,10 +20,10 @@ namespace AnkhMorporkMVC.Controllers
         public override ActionResult Event(IOViewModel model)
         {
             return model.EventAnswer == GameLogic.PredefinedData.UserOption.No ?
-                GameOver(new GameOverViewModel(_gameService.GetUser(), 
-                ((AssassinEventService)_gameService).ProcessAssassinReward(model.input, model.EventAnswer, out StringBuilder output).ToString(),
-                _gameService.GetEntityImgPath())) :
-                View("AssassinReward", new AssassinRewardViewModel(model.input, model.EventAnswer, _gameService.GetEntityImgPath()));
+                GameOver(new GameOverViewModel(GameService.GetUser(), 
+                ((AssassinEventService)GameService).ProcessAssassinReward(model.input, model.EventAnswer, out StringBuilder output).ToString(),
+                GameService.GetEntityImgPath())) :
+                View("AssassinReward", new AssassinRewardViewModel(model.input, model.EventAnswer, GameService.GetEntityImgPath()));
         }
 
         [HttpPost]
@@ -32,14 +32,11 @@ namespace AnkhMorporkMVC.Controllers
             if (!ModelState.IsValid)
                 return View("AssassinReward", model);
 
-            StringBuilder output;
-            var imgPath = _gameService.GetEntityImgPath();
-            if (((AssassinEventService)_gameService).ProcessAssassinReward(model.Input, model.EventAnswer, out output))
-            {
-                return View("EventResponse", new EventResponseViewModel(output.ToString(), _gameService.GetUser(), imgPath));
-            }
+            var imgPath = GameService.GetEntityImgPath();
 
-            return GameOver(new GameOverViewModel(_gameService.GetUser(), output.ToString(), imgPath));
+            return ((AssassinEventService)GameService).ProcessAssassinReward(model.Input, model.EventAnswer, out StringBuilder output) ?
+                View("EventResponse", new EventResponseViewModel(output.ToString(), GameService.GetUser(), imgPath)) :
+                GameOver(new GameOverViewModel(GameService.GetUser(), output.ToString(), imgPath));
         }
     }
 }

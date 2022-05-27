@@ -7,27 +7,27 @@ namespace AnkhMorporkMVC.Controllers
 {
     public class GameEventController : Controller
     {
-        protected GameEventService _gameService;
+        protected GameEventService GameService;
 
-        public GameEventController(GameEventService _service)
+        public GameEventController(GameEventService service)
         {
-            _gameService = _service;
+            GameService = service;
         }
 
         public virtual ActionResult StartGameEvent()
         {
-            var output = _gameService.StartGameEvent();
-            return View(new IOViewModel(output, _gameService.GetEntityImgPath()));
+            var output = GameService.StartGameEvent();
+            return View(new IOViewModel(output, GameService.GetEntityImgPath()));
         }
 
         [HttpPost]
         public virtual ActionResult Event(IOViewModel model)
         {
-            var imgPath = _gameService.GetEntityImgPath();
+            var imgPath = GameService.GetEntityImgPath();
 
-            return _gameService.ProcessEvent(model.EventAnswer, out StringBuilder output) == true ?
-                EventResponse(new EventResponseViewModel(output.ToString(), _gameService.GetUser(), imgPath))
-                : GameOver(new GameOverViewModel(_gameService.GetUser(), output.ToString(), imgPath));
+            return GameService.ProcessEvent(model.EventAnswer, out StringBuilder output) == true ?
+                EventResponse(new EventResponseViewModel(output.ToString(), GameService.GetUser(), imgPath))
+                : GameOver(new GameOverViewModel(GameService.GetUser(), output.ToString(), imgPath));
         }
 
         public virtual ActionResult EventResponse(EventResponseViewModel model)
@@ -37,7 +37,7 @@ namespace AnkhMorporkMVC.Controllers
 
         public virtual ActionResult GameOver(GameOverViewModel model)
         {
-            _gameService.GameOver();
+            GameService.GameOver();
             return View("GameOver", model);
         }
     }

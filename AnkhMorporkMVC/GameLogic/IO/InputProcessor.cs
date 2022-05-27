@@ -21,8 +21,9 @@ namespace AnkhMorporkMVC.GameLogic.IO
                 }
             );
 
-            var result = method.Invoke(null, new object[] { input, temp });
+            var result = method == null ? method : method.Invoke(null, new object[] { input, temp });
             if (result == null) { return false; }
+
             return (bool)result;
         }
 

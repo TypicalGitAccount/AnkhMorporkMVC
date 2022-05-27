@@ -30,7 +30,7 @@ namespace AnkhMorporkMVC.Services
         public List<GameEntity> GetEntities()
         {
             var entityModels = _entitiesRepository.Get();
-            List<GameEntity> entities = entityModels.ToList().Select(m => m.FillProperties()).ToList();
+            List<GameEntity> entities = entityModels.Select(m => m.FillProperties()).ToList();
             return entities;
         }
 
